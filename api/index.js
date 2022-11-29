@@ -26,8 +26,8 @@ app.use("/hotels", hotelsRoute);
 app.use("/rooms", roomsRoute);
 
 app.use((error, req, res, next) => {
-  const errorStatus = err.status || 500;
-  const errorMessage = err.message || "Error!";
+  const errorStatus = error.status || 500;
+  const errorMessage = error.message || "Error!";
   return res.status(errorStatus).json({
     success: false,
     status: errorStatus,
