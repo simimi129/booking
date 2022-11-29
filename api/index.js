@@ -1,4 +1,4 @@
-import express from "express";
+import express, { json } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoute from "./routes/auth.js";
@@ -25,8 +25,15 @@ app.use("/users", usersRoute);
 app.use("/hotels", hotelsRoute);
 app.use("/rooms", roomsRoute);
 
-app.use((req, res, next) => {
-  console.log("middleware");
+app.use((error, req, res, next) => {
+  const errorStatus = err.status || 500;
+  const errorMessage = err.message || "Error!";
+  return res.status(errorStatus).json({
+    success: false,
+    status: errorStatus,
+    message: errorMessage,
+    stack: error.stack,
+  });
 });
 
 app.listen(5000, () => {
