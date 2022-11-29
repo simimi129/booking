@@ -25,6 +25,10 @@ app.use("/users", usersRoute);
 app.use("/hotels", hotelsRoute);
 app.use("/rooms", roomsRoute);
 
+app.use((req, res, next) => {
+  console.log("middleware");
+});
+
 app.listen(5000, () => {
   connect();
   console.log("Connected to backend.");
