@@ -18,10 +18,12 @@ async function connect() {
   }
 }
 
+app.use(express.json());
+
 app.use("/auth", authRoute);
-app.use("/users", authRoute);
-app.use("/hotels", authRoute);
-app.use("/rooms", authRoute);
+app.use("/users", usersRoute);
+app.use("/hotels", hotelsRoute);
+app.use("/rooms", roomsRoute);
 
 app.listen(5000, () => {
   connect();
