@@ -13,6 +13,10 @@ async function connect() {
   }
 }
 
+app.get("/", (req, res) => {
+  res.send("Hello world!");
+});
+
 app.listen(5000, () => {
   connect();
   console.log("Connected to backend.");
